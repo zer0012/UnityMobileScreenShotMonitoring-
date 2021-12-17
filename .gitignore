@@ -1,0 +1,10 @@
+.vscode/
+.vs/
+.DS_Store
+.idea/
+
+Temp/
+Logs/
+Library/
+
+Assets/StreamingAssets*
