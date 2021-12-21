@@ -26,6 +26,78 @@ public class MobileCallBack : MonoBehaviour
 
 #elif UNITY_ANDROID
 
+    private AndroidJavaObject _pluginActivity;
+
+    public UnityEngine.UI.InputField input;
+    public UnityEngine.UI.Button sendButton;
+    public UnityEngine.UI.Button instanceNutton;
+
+    private void Start()
+    {
+        ins();
+        instanceNutton.onClick.AddListener(() => { CallUnityTest(); });
+        sendButton.onClick.AddListener(() => { ShowToast(); });
+    }
+
+    private void ins()
+    {
+        try
+        {
+            _pluginActivity = new AndroidJavaObject("com.android.unitynativecall.NativeCall");
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Can't InstanceAndroidJavaObject");
+            throw;
+        }
+        InitScreenShootDetect();
+
+
+    }
+
+    //public void Add()
+    //{
+    //    if (_pluginActivity !=null)
+    //    {
+    //        var result = _pluginActivity.Call<int>("Add", 7, 8);
+    //        text.text = result.ToString();
+    //        Debug.Log("OutPut" + result);
+    //    }
+    //}
+
+    private void InitScreenShootDetect()
+    {
+        if (_pluginActivity == null) return;
+        Debug.Log("InitScreenShootDetect");
+        _pluginActivity.Call("InitScreenShootDetect");
+    }
+
+
+    private void CallUnity(string message)
+    {
+        Debug.Log(message);
+    }
+
+    public void ScreenShooting(string str)
+    {
+        if (_pluginActivity == null) return;
+        Debug.Log("Shoot");
+        AddCube();
+    }
+
+    private void CallUnityTest()
+    {
+        if (_pluginActivity == null) return;
+        Debug.Log("CallBack");
+        _pluginActivity.Call("CallBack");
+    }
+
+    private void ShowToast()
+    {
+        if (_pluginActivity == null) return;
+        _pluginActivity.Call("ShowToast", input.text); 
+    }
+
 
 
 #else

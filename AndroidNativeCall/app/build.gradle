@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.android.androidnativecall"
-        minSdk 23
+        minSdk 16
         targetSdk 32
         versionCode 1
         versionName "1.0"
