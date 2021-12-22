@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "AndroidNativeCall"
 include ':app'
 include ':UnityNativeCall'
+include ':test'

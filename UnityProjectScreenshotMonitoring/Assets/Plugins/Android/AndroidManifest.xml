@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zer0012.UnityProjectScreenshotMonitoring"
     xmlns:tools="http://schemas.android.com/tools">
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application>
         <activity android:name="com.android.unitynativecall.NativeCall"
                   android:theme="@style/UnityThemeSelector">
@@ -13,6 +14,5 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
-      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     </application>
 </manifest>
