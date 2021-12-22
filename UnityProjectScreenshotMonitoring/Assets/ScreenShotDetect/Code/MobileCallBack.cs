@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using System;
 
 #if UNITY_ANDROID
 using UnityEngine.Android;
 #endif
 
+[HelpURL("https://github.com/zer0012/UnityMobileScreenshotMonitoring-")]
+
 public class MobileCallBack : MonoBehaviour
 {
+    /// <summary>
+    /// 截图调用
+    /// </summary>
+    public Action Shoot;
 
 #if UNITY_IOS
 
@@ -24,7 +31,8 @@ public class MobileCallBack : MonoBehaviour
     
     private void Callbake_iosMessage(string message)
     {
-        AddCube();
+        Shoot?.Invoke();
+        Debug.Log("Shoot");
     }
 
 
@@ -32,7 +40,8 @@ public class MobileCallBack : MonoBehaviour
 
     private AndroidJavaObject _pluginActivity;
 
-    private void Start()
+    //初始化插件
+    public void Init()
     {
         FileAccessPermissions();
         InstallCallAndroid();
@@ -94,8 +103,8 @@ public class MobileCallBack : MonoBehaviour
                 Debug.Log("StopShootDetect");
                 break;
             case ShootingType.Shoot:
+                Shoot?.Invoke();
                 Debug.Log("Shoot");
-                AddCube();
                 break;
             default:
                 Debug.LogError("ErrorEnumType");
@@ -104,34 +113,6 @@ public class MobileCallBack : MonoBehaviour
 
     }
 
-
-    private string inputText;
-    private void ShowToast()
-    {
-        if (_pluginActivity == null) return;
-        _pluginActivity.Call("ShowToast", inputText); 
-    }
-
-#else
-    //测试用
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AddCube();
-        }
-    }
-
 #endif
-
-    private void AddCube()
-    {
-        var ins = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        ins.transform.position = Vector3.zero;
-        ins.AddComponent<Rigidbody>();
-
-        Destroy(ins, 5);
-    }
-
 
 }
