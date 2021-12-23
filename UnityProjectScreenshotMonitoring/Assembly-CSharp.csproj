@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\ScreenShotDetect\Code\MobileCallBack.cs" />
     <Compile Include="Assets\ScreenShotDetect\Code\TestCall.cs" />
+    <None Include="Assets\ScreenShotDetect\Plugins\Android\AndroidManifest.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
