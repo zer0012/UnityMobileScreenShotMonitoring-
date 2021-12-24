@@ -35,12 +35,16 @@ static NativeCallPlugin * _instance;
                                                        queue:mainQueue
                                                   usingBlock:^(NSNotification *note) {
         BackToUnityScene:nil;
-        NSLog("Shoot");
     }];
 }
 
 -(void)BackToUnityScene:(id)sender{
     UnitySendMessage("PluginCallBack", "Callbake_iosMessage", "Shoot");
+}
+
+-(void)Test
+{
+    NSLog(@"testtesttest");
 }
 
 @end
@@ -54,6 +58,9 @@ extern "C"
     {
         [[NativeCallPlugin Instance]InstanceShooting];
     }
-    
-    
+
+    void TestCall()
+    {
+        [[NativeCallPlugin Instance]Test];
+    }
 }

@@ -21,15 +21,22 @@ public class MobileCallBack : MonoBehaviour
 
     [DllImport("__Internal")]
     private static extern void InitScreenCaptureMonitoring();
+    [DllImport("__Internal")] 
+    private static extern void TestCall();
 
     // Start is called before the first frame update
-    void Awake()
+    public void Init()
     {
         Debug.Log("InitScreenCaptureMonitoringForIOS");
         InitScreenCaptureMonitoring();
     }
+
+    public void Test()
+    {
+        TestCall();
+    }
     
-    private void Callbake_iosMessage(string message)
+    public void Callbake_iosMessage(string message)
     {
         Shoot?.Invoke();
         Debug.Log("Shoot");
